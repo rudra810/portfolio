@@ -3,648 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rudrapratap Singh Rathore | Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-neon: #00ff41;
-            --secondary-neon: #00d4ff;
-            --tertiary-neon: #ff006e;
-            --dark-bg: #0a0e27;
-            --darker-bg: #050812;
-            --text-light: #ffffff;
-            --text-secondary: #b0b0b0;
-        }
-
-        body {
-            font-family: 'Courier New', 'Courier', monospace;
-            background: linear-gradient(135deg, var(--darker-bg) 0%, #1a1f3a 100%);
-            color: var(--text-light);
-            line-height: 1.6;
-            background-attachment: fixed;
-            min-height: 100vh;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--dark-bg);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-neon);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary-neon);
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 14, 39, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid var(--primary-neon);
-            z-index: 999;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            padding: 20px;
-            list-style: none;
-        }
-
-        nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon));
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 80px;
-            min-height: calc(100vh - 80px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
-            animation: backgroundShift 8s ease-in-out infinite;
-        }
-
-        @keyframes backgroundShift {
-            0%, 100% {
-                filter: brightness(1);
-            }
-            50% {
-                filter: brightness(1.1);
-            }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 72px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary-neon) 0%, var(--secondary-neon) 50%, var(--tertiary-neon) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
-            animation: glitch 3s ease-in-out infinite;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
-        @keyframes glitch {
-            0%, 100% { transform: translateX(0); }
-            20% { transform: translateX(-2px); }
-            40% { transform: translateX(2px); }
-            60% { transform: translateX(-1px); }
-            80% { transform: translateX(1px); }
-        }
-
-        .hero p {
-            font-size: 24px;
-            color: var(--secondary-neon);
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero .subtitle {
-            font-size: 16px;
-            color: var(--text-secondary);
-            margin-top: 20px;
-            letter-spacing: 1px;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* CTA Button */
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            margin-top: 30px;
-            background: linear-gradient(135deg, var(--primary-neon) 0%, var(--secondary-neon) 100%);
-            color: var(--darker-bg);
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
-            cursor: pointer;
-            border: none;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-        }
-
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(0, 255, 65, 0.8);
-        }
-
-        .cta-button.secondary {
-            background: transparent;
-            border: 2px solid var(--tertiary-neon);
-            color: var(--tertiary-neon);
-            box-shadow: 0 0 20px rgba(255, 0, 110, 0.3);
-        }
-
-        .cta-button.secondary:hover {
-            box-shadow: 0 0 40px rgba(255, 0, 110, 0.8);
-        }
-
-        /* Sections */
-        section {
-            padding: 100px 50px;
-            position: relative;
-            z-index: 2;
-        }
-
-        section h2 {
-            font-size: 48px;
-            margin-bottom: 50px;
-            color: var(--text-light);
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            position: relative;
-        }
-
-        section h2::before {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--primary-neon), transparent);
-            margin: 0 auto 20px;
-        }
-
-        section h2::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--secondary-neon), transparent);
-            margin: 20px auto 0;
-        }
-
-        /* About Section */
-        #about {
-            background: linear-gradient(135deg, rgba(10, 14, 39, 0.5) 0%, rgba(26, 31, 58, 0.5) 100%);
-            border-top: 1px solid rgba(0, 255, 65, 0.2);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-content p {
-            font-size: 18px;
-            line-height: 1.8;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-
-        /* Skills Section */
-        #skills {
-            background: linear-gradient(135deg, rgba(26, 31, 58, 0.5) 0%, rgba(10, 14, 39, 0.5) 100%);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .skill-card {
-            background: linear-gradient(135deg, rgba(0, 255, 65, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
-            border: 2px solid rgba(0, 255, 65, 0.3);
-            padding: 30px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .skill-card:hover {
-            border-color: var(--primary-neon);
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
-            transform: translateY(-10px);
-        }
-
-        .skill-card:hover::before {
-            left: 100%;
-        }
-
-        .skill-card h3 {
-            color: var(--primary-neon);
-            margin-bottom: 15px;
-            font-size: 18px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .skill-card p {
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
-        /* Experience Section */
-        #experience {
-            background: linear-gradient(135deg, rgba(10, 14, 39, 0.5) 0%, rgba(26, 31, 58, 0.5) 100%);
-            border-top: 1px solid rgba(0, 212, 255, 0.2);
-            border-bottom: 1px solid rgba(255, 0, 110, 0.2);
-        }
-
-        .experience-timeline {
-            max-width: 800px;
-            margin: 50px auto;
-            position: relative;
-        }
-
-        .timeline-item {
-            margin-bottom: 50px;
-            padding-left: 50px;
-            position: relative;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-neon);
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: 9px;
-            top: 20px;
-            width: 2px;
-            height: 30px;
-            background: linear-gradient(180deg, var(--primary-neon), transparent);
-        }
-
-        .timeline-item:last-child::after {
-            display: none;
-        }
-
-        .timeline-item h3 {
-            color: var(--secondary-neon);
-            font-size: 20px;
-            margin-bottom: 5px;
-        }
-
-        .timeline-item p {
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
-        /* Contact Section */
-        #contact {
-            background: linear-gradient(135deg, rgba(26, 31, 58, 0.7) 0%, rgba(10, 14, 39, 0.7) 100%);
-            border-top: 1px solid rgba(255, 0, 110, 0.2);
-            text-align: center;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 50px;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .contact-item a {
-            color: var(--primary-neon);
-            text-decoration: none;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
-        }
-
-        .contact-item a:hover {
-            color: var(--tertiary-neon);
-            text-shadow: 0 0 20px rgba(255, 0, 110, 0.6);
-        }
-
-        .contact-label {
-            color: var(--text-secondary);
-            font-size: 12px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: var(--text-secondary);
-            font-size: 14px;
-            border-top: 1px solid rgba(0, 255, 65, 0.2);
-            background: var(--darker-bg);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 42px;
-            }
-
-            .hero p {
-                font-size: 18px;
-            }
-
-            nav ul {
-                gap: 20px;
-                padding: 15px;
-            }
-
-            section {
-                padding: 60px 20px;
-            }
-
-            section h2 {
-                font-size: 36px;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-info {
-                gap: 20px;
-            }
-        }
-
-        /* Animated Grid Background */
-        .grid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(0deg, transparent 24%, rgba(0, 255, 65, 0.05) 25%, rgba(0, 255, 65, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 65, 0.05) 75%, rgba(0, 255, 65, 0.05) 76%, transparent 77%, transparent),
-                linear-gradient(90deg, transparent 24%, rgba(0, 255, 65, 0.05) 25%, rgba(0, 255, 65, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 65, 0.05) 75%, rgba(0, 255, 65, 0.05) 76%, transparent 77%, transparent);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: 1;
-            animation: gridShift 20s linear infinite;
-        }
-
-        @keyframes gridShift {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(50px);
-            }
-        }
-    </style>
+    <title>Rudrapratap Singh Rathore | Creative Developer & Designer</title>
+    <meta name="description" content="Portfolio of Rudrapratap Singh Rathore — Multi-disciplinary creative developer, graphic designer, and management professional.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="grid-bg"></div>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Animated Background -->
+    <div class="bg-aurora">
+        <div class="aurora-blob blob-1"></div>
+        <div class="aurora-blob blob-2"></div>
+        <div class="aurora-blob blob-3"></div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#home" class="nav-logo">R<span class="logo-accent">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="nav-link active" data-section="home">Home</a>
+                <a href="#about" class="nav-link" data-section="about">About</a>
+                <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+                <a href="#experience" class="nav-link" data-section="experience">Experience</a>
+                <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>RUDRAPRATAP SINGH RATHORE</h1>
-            <p>Multi-Field Learner & Creative Developer</p>
-            <p class="subtitle">// Graphics • Web • HR • Content //</p>
-            <a href="#about" class="cta-button">Explore My Work</a>
-            <a href="#contact" class="cta-button secondary">Get In Touch</a>
+            <div class="hero-badge anim-hidden">
+                <span class="badge-dot"></span>
+                Currently interning at <strong>Zaiya</strong>
+            </div>
+            <h1 class="hero-title anim-hidden">
+                <span class="hero-greeting">Hi, I'm</span>
+                <span class="hero-name">Rudrapratap<br>Singh Rathore</span>
+            </h1>
+            <div class="hero-typewriter anim-hidden">
+                <span class="typewriter-prefix">I craft</span>
+                <span class="typewriter-text" id="typewriterText"></span>
+                <span class="typewriter-cursor">|</span>
+            </div>
+            <p class="hero-desc anim-hidden">Multi-disciplinary creative blending design, development & strategy into impactful digital experiences.</p>
+            <div class="hero-cta anim-hidden">
+                <a href="#experience" class="btn btn-primary">
+                    <span>View My Work</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator anim-hidden">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Scroll to explore</span>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <p>I have worked in many different roles from different fields, so I learn and adapt quickly. With a passion for graphics, technology, and human connection, I combine creative design with strategic thinking to deliver impactful results.</p>
-            <p>My diverse background spans graphic design, recruitment, content creation, and web development—allowing me to approach projects from multiple perspectives and create comprehensive solutions.</p>
+    <section id="about" class="section">
+        <div class="section-container">
+            <div class="section-label anim-hidden">About Me</div>
+            <h2 class="section-title anim-hidden">Versatile Creator<br><span class="text-gradient">& Quick Learner</span></h2>
+            <div class="about-grid">
+                <div class="about-text anim-hidden">
+                    <p>I have worked in many different roles from different fields, so I learn and adapt quickly. With a passion for graphics, technology, and human connection, I combine creative design with strategic thinking to deliver impactful results.</p>
+                    <p>My diverse background spans graphic design, recruitment, content creation, and web development—allowing me to approach projects from multiple perspectives and create comprehensive solutions.</p>
+                    <p>Currently, I'm working at <strong>Zaiya</strong> as a <strong>Graphic Design and Management Intern</strong>, where I bring creative vision and organizational strategy together.</p>
+                </div>
+                <div class="bento-stats">
+                    <div class="bento-card bento-lg anim-hidden">
+                        <span class="bento-number">6+</span>
+                        <span class="bento-label">Projects Delivered</span>
+                    </div>
+                    <div class="bento-card anim-hidden">
+                        <span class="bento-number">4+</span>
+                        <span class="bento-label">Internships</span>
+                    </div>
+                    <div class="bento-card anim-hidden">
+                        <span class="bento-number">5+</span>
+                        <span class="bento-label">Skills Mastered</span>
+                    </div>
+                    <div class="bento-card bento-wide anim-hidden">
+                        <span class="bento-icon">🎯</span>
+                        <span class="bento-label">Multi-Field Expertise</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills">
-        <h2>Core Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <h3>Graphic Design</h3>
-                <p>Professional design expertise in visual identity, typography, color theory, and digital aesthetics.</p>
-            </div>
-            <div class="skill-card">
-                <h3>Recruitment</h3>
-                <p>Strategic talent acquisition and HR management with strong interpersonal and communication abilities.</p>
-            </div>
-            <div class="skill-card">
-                <h3>Web Development</h3>
-                <p>Full-stack web development including design, development, and deployment of modern web applications.</p>
-            </div>
-            <div class="skill-card">
-                <h3>MS Office Suite</h3>
-                <p>Expert-level proficiency in Word, Excel, PowerPoint, and other productivity tools for business solutions.</p>
-            </div>
-            <div class="skill-card">
-                <h3>Communication</h3>
-                <p>Exceptional written and verbal communication skills for presentations, writing, and team collaboration.</p>
-            </div>
-            <div class="skill-card">
-                <h3>Content Creation</h3>
-                <p>Digital content strategy, copywriting, and multimedia creation for various platforms and audiences.</p>
+    <section id="skills" class="section">
+        <div class="section-container">
+            <div class="section-label anim-hidden">What I Do</div>
+            <h2 class="section-title anim-hidden">Core<br><span class="text-gradient">Capabilities</span></h2>
+            <div class="skills-bento">
+                <div class="skill-card skill-featured anim-hidden" data-skill="design">
+                    <div class="skill-icon">🎨</div>
+                    <h3>Graphic Design</h3>
+                    <p>Visual identity, typography, color theory, and digital aesthetics. Creating engaging designs that communicate and captivate.</p>
+                    <div class="skill-tags"><span>Photoshop</span><span>Illustrator</span><span>Canva</span></div>
+                </div>
+                <div class="skill-card anim-hidden" data-skill="web">
+                    <div class="skill-icon">💻</div>
+                    <h3>Web Development</h3>
+                    <p>Modern web applications with clean code and beautiful interfaces.</p>
+                    <div class="skill-tags"><span>HTML/CSS</span><span>JavaScript</span></div>
+                </div>
+                <div class="skill-card anim-hidden" data-skill="hr">
+                    <div class="skill-icon">👥</div>
+                    <h3>Recruitment & HR</h3>
+                    <p>Strategic talent acquisition with strong interpersonal skills.</p>
+                    <div class="skill-tags"><span>Hiring</span><span>Onboarding</span></div>
+                </div>
+                <div class="skill-card anim-hidden" data-skill="content">
+                    <div class="skill-icon">✍️</div>
+                    <h3>Content Creation</h3>
+                    <p>Digital content strategy, copywriting, and multimedia creation.</p>
+                    <div class="skill-tags"><span>Copywriting</span><span>Social Media</span></div>
+                </div>
+                <div class="skill-card anim-hidden" data-skill="comms">
+                    <div class="skill-icon">🗣️</div>
+                    <h3>Communication</h3>
+                    <p>Exceptional written and verbal communication for teams and clients.</p>
+                    <div class="skill-tags"><span>Presentations</span><span>Collaboration</span></div>
+                </div>
+                <div class="skill-card anim-hidden" data-skill="office">
+                    <div class="skill-icon">📊</div>
+                    <h3>MS Office Suite</h3>
+                    <p>Expert-level proficiency in Word, Excel, PowerPoint & beyond.</p>
+                    <div class="skill-tags"><span>Excel</span><span>PowerPoint</span></div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience">
-        <h2>Experience & Projects</h2>
-        <div class="experience-timeline">
-            <div class="timeline-item">
-                <h3>Typography Book Website</h3>
-                <p>Designed and developed an educational website focused on typography principles and font design.</p>
-            </div>
-            <div class="timeline-item">
-                <h3>Color Theory Website</h3>
-                <p>Created an interactive web platform for learning color theory, design principles, and visual harmony.</p>
-            </div>
-            <div class="timeline-item">
-                <h3>ATL in Blinkit</h3>
-                <p>Above-The-Line marketing coordination for a fast-growing e-commerce platform.</p>
-            </div>
-            <div class="timeline-item">
-                <h3>HR Intern - CodeCraft IT Solutions</h3>
-                <p>Handled recruitment processes, employee engagement, and HR administration tasks.</p>
-            </div>
-            <div class="timeline-item">
-                <h3>Web Developer & Tutor</h3>
-                <p>Freelance web development and tutoring in various technical and creative subjects.</p>
-            </div>
-            <div class="timeline-item">
-                <h3>NGO Internship</h3>
-                <p>Contributed to nonprofit initiatives with project management and community engagement.</p>
+    <section id="experience" class="section">
+        <div class="section-container">
+            <div class="section-label anim-hidden">Journey</div>
+            <h2 class="section-title anim-hidden">Experience<br><span class="text-gradient">& Projects</span></h2>
+            <div class="timeline">
+                <div class="timeline-line"><div class="timeline-line-fill" id="timelineFill"></div></div>
+
+                <div class="timeline-item anim-hidden">
+                    <div class="timeline-dot current-dot"><span class="dot-ping"></span></div>
+                    <div class="timeline-card">
+                        <div class="timeline-badge badge-current">Current</div>
+                        <h3>Graphic Design & Management Intern</h3>
+                        <span class="timeline-company">Zaiya</span>
+                        <p>Leading creative design initiatives and management operations, blending visual storytelling with organizational strategy.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item anim-hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <h3>ATL Marketing — Blinkit</h3>
+                        <p>Above-The-Line marketing coordination for a fast-growing e-commerce platform.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item anim-hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <h3>HR Intern</h3>
+                        <span class="timeline-company">CodeCraft IT Solutions</span>
+                        <p>Handled recruitment processes, employee engagement, and HR administration tasks.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item anim-hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <h3>Web Developer & Tutor</h3>
+                        <p>Freelance web development and tutoring in various technical and creative subjects.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item anim-hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <h3>NGO Internship</h3>
+                        <p>Contributed to nonprofit initiatives with project management and community engagement.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item anim-hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-badge badge-project">Project</div>
+                        <h3>Typography Book Website</h3>
+                        <p>Designed and developed an educational website focused on typography principles and font design.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item anim-hidden">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-badge badge-project">Project</div>
+                        <h3>Color Theory Website</h3>
+                        <p>Created an interactive web platform for learning color theory, design principles, and visual harmony.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
-        <h2>Get In Touch</h2>
-        <p style="margin-top: 30px; color: var(--text-secondary); font-size: 16px;">Let's collaborate on something amazing. Reach out through any of these channels.</p>
-        <div class="contact-info">
-            <div class="contact-item">
-                <div class="contact-label">Email</div>
-                <a href="mailto:rathorerudra7877@gmail.com">rathorerudra7877@gmail.com</a>
+    <section id="contact" class="section">
+        <div class="section-container contact-container">
+            <div class="section-label anim-hidden">Let's Connect</div>
+            <h2 class="section-title anim-hidden">Get In<br><span class="text-gradient">Touch</span></h2>
+            <p class="contact-desc anim-hidden">Have a project in mind or just want to chat? I'd love to hear from you.</p>
+            <div class="contact-cards">
+                <a href="mailto:rathorerudra7877@gmail.com" class="contact-card anim-hidden" id="contact-email">
+                    <div class="contact-card-icon">✉️</div>
+                    <div class="contact-card-label">Email</div>
+                    <div class="contact-card-value">rathorerudra7877@gmail.com</div>
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="contact-card anim-hidden" id="contact-linkedin">
+                    <div class="contact-card-icon">💼</div>
+                    <div class="contact-card-label">LinkedIn</div>
+                    <div class="contact-card-value">Connect with me</div>
+                </a>
+                <a href="https://github.com/rudra810" target="_blank" class="contact-card anim-hidden" id="contact-github">
+                    <div class="contact-card-icon">🖥️</div>
+                    <div class="contact-card-label">GitHub</div>
+                    <div class="contact-card-value">View my code</div>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Rudrapratap Singh Rathore. All rights reserved. | Crafted with passion for graphics & gaming.</p>
+        <div class="footer-inner">
+            <p>&copy; 2026 Rudrapratap Singh Rathore</p>
+            <p class="footer-sub">Crafted with passion for design & code</p>
+        </div>
     </footer>
 
-    <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Parallax effect on scroll
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const hero = document.querySelector('.grid-bg');
-            if (hero) {
-                hero.style.transform = `translateY(${scrollY * 0.5}px)`;
-            }
-        });
-
-        // Animate elements on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.skill-card, .timeline-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-    </script>
+    <!-- Motion Library -->
+    <script type="module" src="app.js"></script>
 </body>
 </html>
